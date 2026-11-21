@@ -1,0 +1,504 @@
+/* Tienda en Cuotas - Entrega Final */
+
+/* Colores en variables para cambiarlos en un solo lugar */
+:root {
+    --fondo: #eef2f7;
+    --panel: #ffffff;
+    --principal: #4f46e5;
+    --principal-oscuro: #3730a3;
+    --texto: #1f2937;
+    --texto-suave: #6b7280;
+    --borde: #d1d5db;
+    --exito: #16a34a;
+    --exito-oscuro: #15803d;
+    --error: #dc2626;
+    --error-fondo: #fee2e2;
+    --info-fondo: #e0e7ff;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: "Segoe UI", Arial, sans-serif;
+    background-color: var(--fondo);
+    color: var(--texto);
+    line-height: 1.5;
+}
+
+/* ===== Encabezado y pie ===== */
+
+.encabezado {
+    background: linear-gradient(135deg, var(--principal), var(--principal-oscuro));
+    color: white;
+    padding: 20px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.marca {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.marca h1 {
+    font-size: 1.6rem;
+    line-height: 1.2;
+}
+
+.marca p {
+    font-size: 0.9rem;
+    opacity: 0.9;
+}
+
+.enlace-carrito {
+    background-color: white;
+    color: var(--principal-oscuro);
+    text-decoration: none;
+    font-weight: bold;
+    padding: 8px 14px;
+    border-radius: 999px;
+    white-space: nowrap;
+}
+
+.pie {
+    text-align: center;
+    color: var(--texto-suave);
+    padding: 24px 16px;
+    font-size: 0.9rem;
+}
+
+/* ===== Layout: catálogo a la izquierda, carrito a la derecha, compras abajo ===== */
+
+.contenedor {
+    max-width: 1200px;
+    margin: 24px auto;
+    padding: 0 16px;
+    display: grid;
+    grid-template-columns: 1fr 380px;
+    gap: 20px;
+    align-items: start;
+}
+
+.compras {
+    grid-column: 1 / -1;
+}
+
+.carrito {
+    position: sticky;
+    top: 100px;
+    scroll-margin-top: 100px;
+}
+
+.panel {
+    background-color: var(--panel);
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.panel h2 {
+    font-size: 1.2rem;
+    margin-bottom: 12px;
+    color: var(--principal-oscuro);
+}
+
+.barra {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 12px;
+}
+
+.barra h2 {
+    margin-bottom: 0;
+}
+
+.filtros {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+/* ===== Formularios ===== */
+
+label {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    font-size: 0.9rem;
+    color: var(--texto-suave);
+}
+
+input,
+select {
+    padding: 8px 10px;
+    border: 1px solid var(--borde);
+    border-radius: 8px;
+    font-size: 1rem;
+    font-family: inherit;
+    color: var(--texto);
+    background-color: white;
+}
+
+input:focus,
+select:focus {
+    outline: 2px solid var(--principal);
+    border-color: var(--principal);
+}
+
+input:disabled,
+select:disabled {
+    background-color: var(--fondo);
+    cursor: not-allowed;
+}
+
+/* ===== Botones ===== */
+
+.boton {
+    padding: 8px 14px;
+    border: none;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    font-family: inherit;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.boton-principal {
+    background-color: var(--principal);
+    color: white;
+    font-weight: bold;
+}
+
+.boton-principal:hover {
+    background-color: var(--principal-oscuro);
+}
+
+.boton-comprar {
+    background-color: var(--exito);
+    color: white;
+    font-weight: bold;
+    font-size: 1rem;
+    padding: 10px;
+}
+
+.boton-comprar:hover {
+    background-color: var(--exito-oscuro);
+}
+
+.boton-eliminar {
+    background-color: var(--error-fondo);
+    color: var(--error);
+}
+
+.boton-eliminar:hover {
+    filter: brightness(0.95);
+}
+
+.boton:disabled {
+    background-color: var(--borde);
+    color: var(--texto-suave);
+    cursor: not-allowed;
+}
+
+/* ===== Catálogo ===== */
+
+.contador {
+    color: var(--texto-suave);
+    font-size: 0.9rem;
+    margin-bottom: 12px;
+}
+
+.grilla {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 16px;
+}
+
+.tarjeta {
+    border: 1px solid var(--borde);
+    border-radius: 10px;
+    padding: 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    transition: box-shadow 0.2s;
+}
+
+.tarjeta:hover {
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
+}
+
+.tarjeta-imagen {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    border-radius: 8px;
+}
+
+.tarjeta h3 {
+    font-size: 1.1rem;
+}
+
+.tarjeta .boton {
+    margin-top: auto;
+}
+
+.categoria {
+    align-self: flex-start;
+    background-color: var(--info-fondo);
+    color: var(--principal-oscuro);
+    font-size: 0.75rem;
+    padding: 2px 8px;
+    border-radius: 999px;
+}
+
+.precio {
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: var(--principal);
+}
+
+.stock {
+    color: var(--texto-suave);
+    font-size: 0.85rem;
+}
+
+.valor-cuota {
+    font-weight: 600;
+    color: var(--exito);
+    font-size: 0.9rem;
+}
+
+/* Tarjeta sin unidades disponibles: se ve apagada */
+.sin-stock {
+    opacity: 0.6;
+}
+
+.mensaje-lista {
+    grid-column: 1 / -1;
+    text-align: center;
+    color: var(--texto-suave);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+}
+
+/* "Cargando productos..." titila mientras espera el fetch */
+.cargando {
+    animation: titilar 1s ease-in-out infinite alternate;
+}
+
+@keyframes titilar {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0.4;
+    }
+}
+
+/* ===== Carrito ===== */
+
+.lista-carrito {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-height: 340px;
+    overflow-y: auto;
+}
+
+.item-carrito {
+    display: grid;
+    grid-template-columns: 48px 1fr auto;
+    grid-template-areas:
+        "imagen datos quitar"
+        "imagen cantidad subtotal";
+    align-items: center;
+    gap: 4px 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--fondo);
+}
+
+.item-carrito img {
+    grid-area: imagen;
+    width: 48px;
+    height: 48px;
+    border-radius: 6px;
+    object-fit: cover;
+}
+
+.item-datos {
+    grid-area: datos;
+}
+
+.item-datos h3 {
+    font-size: 0.95rem;
+}
+
+.item-datos p {
+    font-size: 0.8rem;
+    color: var(--texto-suave);
+}
+
+.item-cantidad {
+    grid-area: cantidad;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.item-subtotal {
+    grid-area: subtotal;
+    font-weight: 600;
+    text-align: right;
+}
+
+.boton-cantidad {
+    width: 28px;
+    height: 28px;
+    border: 1px solid var(--borde);
+    border-radius: 6px;
+    background-color: white;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.boton-cantidad:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+.boton-quitar {
+    grid-area: quitar;
+    justify-self: end;
+    border: none;
+    background: none;
+    color: var(--texto-suave);
+    cursor: pointer;
+    font-size: 0.9rem;
+}
+
+.boton-quitar:hover {
+    color: var(--error);
+}
+
+.resumen {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 16px;
+    padding-top: 12px;
+    border-top: 2px solid var(--fondo);
+}
+
+.total {
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: var(--principal-oscuro);
+}
+
+.dolares {
+    color: var(--texto-suave);
+    font-size: 0.85rem;
+}
+
+.formulario-compra {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 20px;
+    padding-top: 16px;
+    border-top: 2px solid var(--fondo);
+}
+
+.formulario-compra h2 {
+    margin-bottom: 0;
+}
+
+/* ===== Mis compras ===== */
+
+.lista-compras {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 12px;
+}
+
+.compra {
+    border: 1px solid var(--borde);
+    border-left: 4px solid var(--exito);
+    border-radius: 8px;
+    padding: 12px 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    font-size: 0.9rem;
+}
+
+.compra-encabezado {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 8px;
+}
+
+.compra-encabezado span {
+    color: var(--texto-suave);
+    font-size: 0.8rem;
+}
+
+.compra-total {
+    font-weight: 600;
+    color: var(--exito);
+}
+
+.compra .boton {
+    align-self: flex-start;
+    margin-top: 6px;
+}
+
+/* ===== Librerías ===== */
+
+.toastify {
+    font-family: "Segoe UI", Arial, sans-serif;
+    border-radius: 8px;
+    font-weight: 500;
+}
+
+.swal2-popup {
+    font-family: "Segoe UI", Arial, sans-serif;
+}
+
+.detalle-compra {
+    list-style: none;
+    margin-bottom: 12px;
+}
+
+/* ===== Pantallas chicas: todo en una columna ===== */
+
+@media (max-width: 860px) {
+    .contenedor {
+        grid-template-columns: 1fr;
+    }
+
+    .carrito {
+        position: static;
+    }
+
+    .marca p {
+        display: none;
+    }
+}

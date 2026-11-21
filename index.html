@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tienda en Cuotas - Entrega Final</title>
+    <link rel="icon" href="./assets/img/logo.svg" type="image/svg+xml">
+    <!-- Librería Toastify (CDN): sus estilos van antes que los nuestros -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js@1.12.0/src/toastify.min.css">
+    <link rel="stylesheet" href="./css/style.css">
+    <!-- Librerías por CDN (Toastify y SweetAlert2) y después nuestros 3 archivos, en orden: clases → datos → main -->
+    <script defer src="https://cdn.jsdelivr.net/npm/toastify-js@1.12.0/src/toastify.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/sweetalert2@11.26.25/dist/sweetalert2.all.min.js"></script>
+    <script defer src="./js/clases.js"></script>
+    <script defer src="./js/datos.js"></script>
+    <script defer src="./js/main.js"></script>
+</head>
+<body>
+    <header class="encabezado">
+        <div class="marca">
+            <img src="./assets/img/logo.svg" alt="" width="48" height="48">
+            <div>
+                <h1>Tienda en Cuotas</h1>
+                <p>Simulador de compra online · todos los planes son sin interés</p>
+            </div>
+        </div>
+        <a href="#carrito" class="enlace-carrito" aria-label="Ir al carrito">
+            🛒 <span id="contador-carrito">0</span>
+        </a>
+    </header>
+
+    <main class="contenedor">
+        <!-- Paso 1: el catálogo que JavaScript dibuja con los productos que trae el fetch -->
+        <section class="panel catalogo">
+            <div class="barra">
+                <h2>1. Elegí tus productos</h2>
+                <div class="filtros">
+                    <input type="text" id="input-buscar" placeholder="🔍 Buscar producto">
+                    <select id="select-categoria" aria-label="Filtrar por categoría">
+                        <option value="">Todas las categorías</option>
+                    </select>
+                </div>
+            </div>
+            <p id="contador-productos" class="contador"></p>
+            <div id="contenedor-productos" class="grilla"></div>
+        </section>
+
+        <!-- Pasos 2 y 3: el carrito, el total en cuotas y el formulario para confirmar -->
+        <aside class="panel carrito" id="carrito">
+            <h2>2. Tu carrito</h2>
+            <div id="contenedor-carrito" class="lista-carrito"></div>
+
+            <div class="resumen">
+                <p class="total">Total: <span id="total-carrito">$0,00</span></p>
+                <p class="dolares" id="total-dolares"></p>
+                <label>
+                    Pagarlo en
+                    <select id="select-cuotas"></select>
+                </label>
+                <p class="valor-cuota" id="valor-cuota"></p>
+                <button type="button" id="boton-vaciar" class="boton boton-eliminar">🗑️ Vaciar carrito</button>
+            </div>
+
+            <form id="formulario-compra" class="formulario-compra" novalidate>
+                <h2>3. Confirmá tu compra</h2>
+                <label>
+                    Nombre y apellido
+                    <input type="text" id="input-nombre" placeholder="Ej: Ana Gómez">
+                </label>
+                <label>
+                    Email
+                    <input type="email" id="input-email" placeholder="Ej: ana@mail.com">
+                </label>
+                <button type="submit" id="boton-confirmar" class="boton boton-comprar">Confirmar compra</button>
+            </form>
+        </aside>
+
+        <!-- Paso 4: el historial de compras confirmadas (se guarda en el localStorage) -->
+        <section class="panel compras">
+            <div class="barra">
+                <h2>4. Mis compras</h2>
+                <button type="button" id="boton-borrar-historial" class="boton boton-eliminar">🗑️ Borrar historial</button>
+            </div>
+            <div id="contenedor-compras" class="lista-compras"></div>
+        </section>
+    </main>
+
+    <footer class="pie">
+        <p>Entrega Final · Curso de JavaScript (Coderhouse) · Benjamín Murillo</p>
+    </footer>
+</body>
+</html>

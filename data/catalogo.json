@@ -1,0 +1,13 @@
+{
+    "planesDeCuotas": [1, 3, 6, 12],
+    "productos": [
+        { "id": 1, "nombre": "Celular", "categoria": "Tecnología", "precio": 450000, "stock": 5, "imagen": "./assets/img/celular.svg" },
+        { "id": 2, "nombre": "Notebook", "categoria": "Tecnología", "precio": 900000, "stock": 3, "imagen": "./assets/img/notebook.svg" },
+        { "id": 3, "nombre": "Auriculares", "categoria": "Tecnología", "precio": 60000, "stock": 10, "imagen": "./assets/img/auriculares.svg" },
+        { "id": 4, "nombre": "Smartwatch", "categoria": "Tecnología", "precio": 180000, "stock": 4, "imagen": "./assets/img/smartwatch.svg" },
+        { "id": 5, "nombre": "Zapatillas", "categoria": "Indumentaria", "precio": 120000, "stock": 8, "imagen": "./assets/img/zapatillas.svg" },
+        { "id": 6, "nombre": "Mochila", "categoria": "Indumentaria", "precio": 45000, "stock": 6, "imagen": "./assets/img/mochila.svg" },
+        { "id": 7, "nombre": "Televisor", "categoria": "Electrodomésticos", "precio": 700000, "stock": 2, "imagen": "./assets/img/televisor.svg" },
+        { "id": 8, "nombre": "Cafetera", "categoria": "Electrodomésticos", "precio": 95000, "stock": 7, "imagen": "./assets/img/cafetera.svg" }
+    ]
+}
